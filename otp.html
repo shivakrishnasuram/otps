@@ -5,12 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    #btnvalid{
+        padding:10px;
+        border: 0.5px solid black;
+        border-radius: 5px;
+        cursor: pointer;
+        /* background-color: rgb(35, 152, 235); */
+        color:black;
+    }
+    #btnvalids{
+        padding:10px;
+        border: 0.5px solid black;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: rgb(35, 152, 235);
+        color:black;
+
+    }
+    .inputs{
+        padding:10px;
+        border: 2px solid black;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
 <body>
-    <input type="number" id="generateotp">
-    <button onclick="generate()">
+    <input class="inputs" type="number" id="generateotp">
+    <button id="btnvalid" onclick="generate()">
         generate
     </button>
-    <button onclick="validate()">
+    <button id="btnvalids" onclick="validate()">
         validate
     </button>
     <p id="55"></p>
@@ -18,14 +43,32 @@
         let otp;
         let data;
         let valueotp;
+        let body =document.createElement("div");
+        body.style.width="100%";
+        body.style.borderRadius="30px";
+        body.style.border="3px solid black";
+        body.style.height="90vh";
+        document.body.append(body);
         function generate() {
-            otp = Math.floor(10000+Math.random() * 10000);
+            otp = Math.floor(2*(100000+Math.random() *100000));
             console.log(otp);
             data =document.getElementById("55");
             data.innerHTML =otp;
+            data.style.fontSize="35px";
+            data.style.display="flex";
+            data.style.justifyContent="center";
+            data.style.alignItems="center";
+            data.style.fontWeight="900";
+            data.style.fontFamily="Arial";
+            data.style.color=`#${3*otp}`;
+            body.style.backgroundColor =`#${otp}`;
+            document.getElementById("btnvalid").style.backgroundColor=`#${2*otp}`;
+            // document.getElementByClassName("inputs").style.backgroundColor=`#${1.5*otp}`;
+            document.getElementById("btnvalids").style.backgroundColor=`#${3*otp}`;
         }
         function validate(){
             valueotp =document.getElementById("generateotp").value;
+            
             console.log(valueotp);
             if(otp == valueotp){
                 alert("otp is valid");
